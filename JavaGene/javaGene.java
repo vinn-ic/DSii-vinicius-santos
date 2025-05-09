@@ -1,45 +1,36 @@
 import java.util.Scanner;
 
-public class javaGene {
+public class javaGene{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.print("numero de genes>>");
+        int n = scanner.nextInt();
+        boolean ifachou = false;
+        int geneDup=0;
 
-        System.out.println("Quantos genes?");
-        int number = scanner.nextInt();  // Lê o número de genes
-        scanner.nextLine(); // Consome a quebra de linha deixada pelo nextInt()
+        int arrayNum[] = new int[n];
 
-        // Agora o array genes é do tipo String[], já que estamos lidando com genes como strings
-        String[] genes = new String[number];
-
-        // Lê os genes
-        System.out.println("Informe os genes:");
-        for (int i = 0; i < number; i++) {
-            genes[i] = scanner.nextLine();  // Lê uma string para cada posição do array
+        for(int i = 0;i<n;i++){
+            System.out.println("gene>>");
+            int geneInt = scanner.nextInt();
+            arrayNum[i]=geneInt;
         }
 
-        
-
-        int contador = 0;
-        for(int j = 0; j < number; j++){
-            for (int i = 0; i < number; i++) {
-                if (genes[i].equals(genes[j])) {  
-                    contador++;
-                    
-                    
+        for(int j = 0; j< arrayNum.length;j++){
+            for(int i = 0; i<arrayNum.length;i++){
+                if(i != j && arrayNum[i] == arrayNum[j]){
+                    ifachou = true;
+                    geneDup = arrayNum[i];
                 }
             }
         }
+        if(ifachou){
+            System.out.println("achei o danado: "+geneDup);
+        }else if(!ifachou){
 
-        // Decide a saída com base na contagem
-        if (contador > 1) {
-            System.out.print("Achei o danado!");
-           
-        } else if (contador == 1) {
-            System.out.println("Ainda não é o suficiente");
-        } else {
-            System.out.println("Sumiuu!");
+            System.out.println("sumiu");
         }
-
         scanner.close();
+
     }
 }
